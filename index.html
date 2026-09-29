@@ -1,0 +1,4052 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<meta name="theme-color" content="#0b0a09">
+
+<title>Untuk Bapak — 48 Tahun</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root{
+    --black:#0b0a09;
+    --black2:#12100e;
+    --paper:#f3eee4;
+    --paper2:#fffaf0;
+
+    --gold:#c49a55;
+    --gold2:#e6c77f;
+    --gold3:#8b672f;
+
+    --brown:#765e42;
+    --muted:#918879;
+
+    --red:#853b34;
+
+    --line:rgba(40,30,20,.13);
+
+    --ease:cubic-bezier(.2,.8,.2,1);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--paper);
+    color:#211d18;
+    font-family:"DM Sans",sans-serif;
+    overflow-x:hidden;
+}
+
+button{
+    font-family:inherit;
+}
+
+img{
+    display:block;
+}
+
+::selection{
+    background:#17130e;
+    color:#f5dfaa;
+}
+
+
+/* =========================================================
+   NOISE
+========================================================= */
+
+.noise{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:9999;
+    opacity:.035;
+
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+#intro{
+    position:fixed;
+    inset:0;
+    z-index:10000;
+
+    background:
+        radial-gradient(circle at 50% 35%,rgba(196,154,85,.13),transparent 28%),
+        #0b0a09;
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:25px;
+
+    transition:
+        transform 1.1s cubic-bezier(.77,0,.18,1),
+        opacity .6s ease;
+}
+
+#intro.hide{
+    transform:translateY(-100%);
+}
+
+.intro-content{
+    width:min(520px,100%);
+    text-align:center;
+}
+
+.secret{
+    color:#c7a66b;
+    font-size:9px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    margin-bottom:25px;
+}
+
+.intro-gift{
+    width:100px;
+    height:100px;
+
+    margin:0 auto 35px;
+
+    position:relative;
+
+    animation:
+        giftFloat 3s ease-in-out infinite;
+}
+
+.gift-box{
+    position:absolute;
+    width:68px;
+    height:55px;
+
+    left:16px;
+    bottom:10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #8c652e 0 43%,
+            #e0bd72 43% 57%,
+            #8c652e 57%
+        );
+
+    border-radius:4px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.5);
+}
+
+.gift-lid{
+    position:absolute;
+
+    width:78px;
+    height:15px;
+
+    left:11px;
+    bottom:59px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #8c652e 0 43%,
+            #e0bd72 43% 57%,
+            #8c652e 57%
+        );
+
+    border-radius:4px;
+}
+
+.ribbon{
+    position:absolute;
+    width:14px;
+    height:85px;
+
+    left:43px;
+    top:8px;
+
+    background:#e0bd72;
+
+    border-radius:2px;
+}
+
+.bow{
+    position:absolute;
+    width:28px;
+    height:20px;
+
+    left:35px;
+    top:0;
+}
+
+.bow:before,
+.bow:after{
+    content:"";
+    position:absolute;
+
+    width:22px;
+    height:15px;
+
+    background:#d9b76d;
+
+    border-radius:100% 0 100% 0;
+}
+
+.bow:before{
+    transform:rotate(35deg);
+    left:-7px;
+}
+
+.bow:after{
+    transform:scaleX(-1) rotate(35deg);
+    right:-7px;
+}
+
+@keyframes giftFloat{
+    0%,100%{
+        transform:translateY(0) rotate(0);
+    }
+
+    50%{
+        transform:translateY(-10px) rotate(1deg);
+    }
+}
+
+.intro-content h1{
+    font-family:"Libre Baskerville",serif;
+    font-size:clamp(2.5rem,9vw,4.8rem);
+    line-height:1;
+    letter-spacing:-3px;
+}
+
+.intro-content h1 span{
+    color:var(--gold2);
+    font-style:italic;
+}
+
+.intro-text{
+    max-width:400px;
+    margin:22px auto 32px;
+
+    color:#999187;
+
+    line-height:1.8;
+    font-size:13px;
+}
+
+.open-btn{
+    border:1px solid #765c32;
+    background:rgba(255,255,255,.02);
+
+    color:#e5c77f;
+
+    padding:15px 25px;
+
+    font-size:10px;
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    transition:.35s;
+}
+
+.open-btn:hover{
+    background:#e5c77f;
+    color:#111;
+    transform:translateY(-3px);
+}
+
+.intro-note{
+    margin-top:18px;
+
+    color:#655f57;
+
+    font-size:9px;
+    letter-spacing:1px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+    position:fixed;
+
+    top:0;
+    left:0;
+    right:0;
+
+    height:70px;
+
+    padding:
+        env(safe-area-inset-top)
+        clamp(18px,5vw,70px)
+        0;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    z-index:500;
+
+    background:rgba(243,238,228,.72);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid transparent;
+
+    transform:translateY(-100%);
+
+    transition:.5s var(--ease);
+}
+
+header.show{
+    transform:translateY(0);
+    border-bottom-color:var(--line);
+}
+
+.brand{
+    font-family:"Libre Baskerville",serif;
+    font-weight:bold;
+
+    font-size:13px;
+}
+
+.brand span{
+    color:var(--gold3);
+}
+
+nav{
+    display:flex;
+    gap:5px;
+}
+
+nav a{
+    color:#70685d;
+
+    text-decoration:none;
+
+    font-size:10px;
+
+    padding:8px 11px;
+
+    border-radius:30px;
+
+    transition:.25s;
+}
+
+nav a:hover{
+    background:#ded5c5;
+    color:#211d18;
+}
+
+.music{
+    width:38px;
+    height:38px;
+
+    border-radius:50%;
+
+    border:1px solid var(--line);
+
+    background:transparent;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.3s;
+}
+
+.music.on{
+    background:#181411;
+    color:#f2d68e;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main{
+    opacity:0;
+    transition:1s;
+}
+
+main.show{
+    opacity:1;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:100svh;
+
+    padding:
+        120px clamp(20px,7vw,100px)
+        70px;
+
+    display:grid;
+
+    grid-template-columns:1.05fr .95fr;
+
+    align-items:center;
+
+    gap:70px;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.hero:before{
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    right:-200px;
+    top:-180px;
+
+    background:radial-gradient(
+        circle,
+        rgba(196,154,85,.12),
+        transparent 65%
+    );
+
+    pointer-events:none;
+}
+
+.kicker{
+    color:var(--brown);
+
+    font-size:9px;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    margin-bottom:22px;
+}
+
+.hero h2{
+    font-family:"Libre Baskerville",serif;
+
+    font-size:clamp(3.1rem,7.7vw,7.5rem);
+
+    line-height:.94;
+
+    letter-spacing:-6px;
+}
+
+.hero h2 em{
+    color:var(--gold3);
+    font-weight:400;
+}
+
+.hero-copy{
+    max-width:550px;
+
+    color:#756d62;
+
+    line-height:1.9;
+
+    font-size:14px;
+
+    margin:30px 0;
+}
+
+.hero-meta{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.pill{
+    padding:10px 14px;
+
+    border:1px solid var(--line);
+
+    font-size:9px;
+
+    color:#70675a;
+}
+
+.scroll{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    margin-top:55px;
+
+    color:#9a9183;
+
+    font-size:8px;
+
+    letter-spacing:3px;
+}
+
+.scroll i{
+    width:42px;
+    height:1px;
+    background:var(--gold);
+}
+
+
+/* =========================================================
+   HERO PHOTO
+========================================================= */
+
+.hero-photo{
+    position:relative;
+
+    height:min(650px,75vh);
+
+    min-height:450px;
+
+    perspective:1000px;
+}
+
+.photo-frame{
+    position:absolute;
+
+    inset:20px 0 0 35px;
+
+    border:1px solid #aa9065;
+}
+
+.photo-box{
+    position:absolute;
+
+    inset:0 35px 35px 0;
+
+    overflow:hidden;
+
+    background:#c7b9a3;
+
+    box-shadow:
+        25px 30px 70px rgba(40,30,20,.17);
+
+    transform:rotate(-1deg);
+
+    transition:transform .5s var(--ease);
+}
+
+.photo-box:hover{
+    transform:rotate(0) scale(1.015);
+}
+
+.photo-box img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    filter:saturate(.85);
+}
+
+.photo-fallback{
+    position:absolute;
+    inset:0;
+
+    display:grid;
+    place-items:center;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d8cdbb,
+            #9f907a
+        );
+
+    color:#655846;
+
+    font-size:12px;
+}
+
+.photo-fallback b{
+    font-family:"Libre Baskerville",serif;
+
+    font-size:70px;
+
+    opacity:.15;
+}
+
+.photo-tag{
+    position:absolute;
+
+    right:0;
+    bottom:0;
+
+    background:#16120e;
+
+    color:#e9d8ae;
+
+    padding:14px 18px;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+}
+
+
+/* =========================================================
+   TICKER
+========================================================= */
+
+.ticker{
+    background:#12100e;
+
+    color:#d3c19d;
+
+    padding:17px 20px;
+
+    overflow:hidden;
+
+    white-space:nowrap;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+}
+
+.ticker-track{
+    display:inline-flex;
+
+    gap:35px;
+
+    animation:ticker 22s linear infinite;
+}
+
+@keyframes ticker{
+    to{
+        transform:translateX(-50%);
+    }
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.section{
+    max-width:1450px;
+
+    margin:auto;
+
+    padding:
+        120px clamp(20px,7vw,100px);
+}
+
+.section-head{
+    display:grid;
+
+    grid-template-columns:.7fr 1.3fr;
+
+    gap:50px;
+
+    margin-bottom:60px;
+}
+
+.num{
+    color:var(--gold3);
+
+    font-size:9px;
+
+    letter-spacing:4px;
+}
+
+.section h3{
+    font-family:"Libre Baskerville",serif;
+
+    font-size:clamp(2.4rem,5.8vw,5.6rem);
+
+    line-height:1;
+
+    letter-spacing:-4px;
+
+    font-weight:400;
+}
+
+.section h3 strong{
+    font-weight:bold;
+}
+
+.lead{
+    color:#766e62;
+
+    max-width:650px;
+
+    margin-top:18px;
+
+    font-size:14px;
+
+    line-height:1.9;
+}
+
+
+/* =========================================================
+   LETTER MESSAGE
+========================================================= */
+
+.message{
+    display:grid;
+
+    grid-template-columns:.65fr 1.35fr;
+
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+}
+
+.message-side{
+    padding:35px 25px 35px 0;
+
+    color:#918777;
+
+    font-size:10px;
+
+    line-height:1.8;
+}
+
+.message-main{
+    border-left:1px solid var(--line);
+
+    padding:
+        45px clamp(20px,6vw,80px);
+}
+
+.message-main p{
+    font-family:"Libre Baskerville",serif;
+
+    font-size:clamp(1.15rem,2.3vw,1.8rem);
+
+    line-height:1.75;
+}
+
+.message-main p+p{
+    margin-top:24px;
+}
+
+.signature{
+    margin-top:35px;
+
+    font-family:"Libre Baskerville",serif;
+
+    font-size:15px;
+
+    font-weight:bold;
+}
+
+.signature small{
+    display:block;
+
+    color:#8d8373;
+
+    font-family:"DM Sans",sans-serif;
+
+    font-size:9px;
+
+    margin-top:5px;
+}
+
+
+/* =========================================================
+   MEMORIES
+========================================================= */
+
+.photo-story{
+    display:grid;
+
+    grid-template-columns:1.25fr .75fr;
+
+    gap:18px;
+}
+
+.story{
+    position:relative;
+
+    min-height:500px;
+
+    overflow:hidden;
+
+    background:#c7baa4;
+}
+
+.story.small{
+    min-height:240px;
+}
+
+.story img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transition:transform 1s var(--ease);
+}
+
+.story:hover img{
+    transform:scale(1.06);
+}
+
+.story-fallback{
+    position:absolute;
+    inset:0;
+
+    display:grid;
+    place-items:center;
+
+    background:linear-gradient(
+        135deg,
+        #d8ccba,
+        #9c8d76
+    );
+
+    color:#665947;
+
+    text-align:center;
+
+    font-size:11px;
+}
+
+.story-caption{
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    padding:35px 25px 22px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.78)
+        );
+
+    font-family:"Libre Baskerville",serif;
+
+    font-size:20px;
+}
+
+.story-grid{
+    display:grid;
+
+    grid-template-rows:1fr 1fr;
+
+    gap:18px;
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.cards{
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+}
+
+.card{
+    min-height:300px;
+
+    padding:35px 28px;
+
+    border-right:1px solid var(--line);
+
+    transition:.4s var(--ease);
+}
+
+.card:last-child{
+    border-right:0;
+}
+
+.card:hover{
+    background:#e7dfd1;
+
+    transform:translateY(-6px);
+}
+
+.card-no{
+    color:var(--gold3);
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    margin-bottom:55px;
+}
+
+.card h4{
+    font-family:"Libre Baskerville",serif;
+
+    font-size:25px;
+
+    font-weight:400;
+
+    margin-bottom:14px;
+}
+
+.card p{
+    color:#777064;
+
+    font-size:12px;
+
+    line-height:1.8;
+}
+
+
+/* =========================================================
+   CAKE SECTION
+========================================================= */
+
+.cake-section{
+    max-width:none;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            #2b2117 0,
+            #17120e 35%,
+            #090807 75%
+        );
+
+    color:white;
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+.cake-section:before{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:.35;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(226,190,108,.1),
+            transparent 20%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(226,190,108,.08),
+            transparent 25%
+        );
+}
+
+.cake-wrap{
+    max-width:1250px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:.75fr 1.25fr;
+
+    align-items:center;
+
+    gap:40px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.dark-title .num{
+    color:#d8b86d;
+}
+
+.dark-title h3{
+    color:#f4eddf;
+}
+
+.dark-title .lead{
+    color:#a39a8c;
+}
+
+
+/* =========================================================
+   CAKE STAGE
+========================================================= */
+
+.cake-stage{
+    min-height:600px;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-direction:column;
+}
+
+.cake-aura{
+    position:absolute;
+
+    width:350px;
+    height:350px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(226,188,101,.2),
+            transparent 68%
+        );
+
+    filter:blur(12px);
+
+    animation:aura 4s ease-in-out infinite;
+}
+
+@keyframes aura{
+    0%,100%{
+        transform:scale(.9);
+        opacity:.6;
+    }
+
+    50%{
+        transform:scale(1.1);
+        opacity:1;
+    }
+}
+
+
+/* =========================================================
+   CAKE
+========================================================= */
+
+.cake{
+    width:360px;
+    height:340px;
+
+    position:relative;
+
+    filter:
+        drop-shadow(0 35px 30px rgba(0,0,0,.75));
+
+    transform:scale(.95);
+}
+
+.plate{
+    position:absolute;
+
+    left:50%;
+    bottom:5px;
+
+    transform:translateX(-50%);
+
+    width:340px;
+    height:28px;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            #9e8253,
+            #4d3a22
+        );
+
+    border:1px solid #d3ad67;
+
+    box-shadow:
+        0 8px 15px rgba(0,0,0,.6);
+}
+
+
+/* cake tiers */
+
+.tier{
+    position:absolute;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    border-radius:
+        16px 16px 10px 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #4b2818,
+            #9b5e30 35%,
+            #c47c40 52%,
+            #7d4625 80%,
+            #3e2115
+        );
+
+    box-shadow:
+        inset 0 5px rgba(255,255,255,.12),
+        inset 0 -10px rgba(0,0,0,.18);
+}
+
+.tier1{
+    width:300px;
+    height:80px;
+
+    bottom:30px;
+}
+
+.tier2{
+    width:245px;
+    height:72px;
+
+    bottom:95px;
+}
+
+.tier3{
+    width:195px;
+    height:65px;
+
+    bottom:155px;
+}
+
+
+/* =========================================================
+   CREAM DRIPS
+========================================================= */
+
+.cream{
+    position:absolute;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:3;
+
+    background:
+        linear-gradient(
+            #fff4d8,
+            #e6c88c
+        );
+
+    border-radius:
+        50% 50% 13px 13px;
+
+    box-shadow:
+        0 4px 5px rgba(0,0,0,.18);
+}
+
+.cream1{
+    width:275px;
+    height:18px;
+
+    bottom:95px;
+}
+
+.cream2{
+    width:222px;
+    height:17px;
+
+    bottom:157px;
+}
+
+.cream3{
+    width:177px;
+    height:15px;
+
+    bottom:211px;
+}
+
+.drip{
+    position:absolute;
+
+    width:15px;
+
+    background:#e8cb91;
+
+    border-radius:0 0 10px 10px;
+}
+
+.drip1{
+    height:23px;
+    left:18%;
+    top:7px;
+}
+
+.drip2{
+    height:31px;
+    left:38%;
+    top:7px;
+}
+
+.drip3{
+    height:18px;
+    right:20%;
+    top:7px;
+}
+
+
+/* =========================================================
+   CAKE DECORATIONS
+========================================================= */
+
+.berry{
+    position:absolute;
+
+    width:13px;
+    height:13px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #e9a49a,
+            #742b25 65%
+        );
+
+    z-index:5;
+
+    box-shadow:
+        0 2px 5px rgba(0,0,0,.4);
+}
+
+.berry.b1{
+    left:32%;
+    bottom:110px;
+}
+
+.berry.b2{
+    right:29%;
+    bottom:105px;
+}
+
+.berry.b3{
+    left:48%;
+    bottom:173px;
+}
+
+.leaf{
+    position:absolute;
+
+    width:24px;
+    height:10px;
+
+    border-radius:100% 0;
+
+    background:#667348;
+
+    z-index:4;
+}
+
+.leaf.l1{
+    left:25%;
+    bottom:118px;
+
+    transform:rotate(-25deg);
+}
+
+.leaf.l2{
+    right:24%;
+    bottom:116px;
+
+    transform:rotate(25deg);
+}
+
+
+/* =========================================================
+   CANDLES
+========================================================= */
+
+.candles{
+    position:absolute;
+
+    z-index:10;
+
+    left:50%;
+
+    bottom:218px;
+
+    transform:translateX(-50%);
+
+    width:150px;
+
+    height:100px;
+}
+
+.candle{
+    position:absolute;
+
+    bottom:0;
+
+    width:18px;
+    height:62px;
+
+    border-radius:5px 5px 3px 3px;
+
+    background:
+        repeating-linear-gradient(
+            -45deg,
+            #f6dfa7 0 8px,
+            #a87938 8px 13px
+        );
+
+    box-shadow:
+        inset 2px 0 rgba(255,255,255,.4),
+        2px 5px 7px rgba(0,0,0,.35);
+}
+
+.candle:nth-child(1){
+    left:18px;
+    height:52px;
+}
+
+.candle:nth-child(2){
+    left:66px;
+    height:70px;
+}
+
+.candle:nth-child(3){
+    right:18px;
+    height:52px;
+}
+
+.candle:after{
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    top:-8px;
+
+    transform:translateX(-50%);
+
+    width:3px;
+    height:10px;
+
+    background:#211810;
+}
+
+
+/* =========================================================
+   FLAMES
+========================================================= */
+
+.flame{
+    position:absolute;
+
+    width:21px;
+    height:31px;
+
+    left:50%;
+
+    top:-38px;
+
+    transform:
+        translateX(-50%)
+        rotate(45deg);
+
+    border-radius:
+        50% 50% 50% 5%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff5bd,
+            #ffc32e 50%,
+            #ef6421
+        );
+
+    box-shadow:
+        0 0 12px #ffb72e,
+        0 0 32px rgba(255,160,30,.8);
+
+    animation:
+        flame .13s ease-in-out infinite alternate;
+}
+
+.candle:nth-child(1) .flame{
+    transform:
+        translateX(-50%)
+        rotate(45deg)
+        scale(.85);
+}
+
+.candle:nth-child(3) .flame{
+    transform:
+        translateX(-50%)
+        rotate(45deg)
+        scale(.85);
+}
+
+@keyframes flame{
+    from{
+        margin-left:-1px;
+        scale:.92;
+    }
+
+    to{
+        margin-left:2px;
+        scale:1.08;
+    }
+}
+
+
+/* =========================================================
+   SMOKE
+========================================================= */
+
+.smoke{
+    position:absolute;
+
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:rgba(210,205,194,.4);
+
+    opacity:0;
+
+    filter:blur(3px);
+
+    top:-45px;
+
+    left:50%;
+}
+
+.candle.off .flame{
+    display:none;
+}
+
+.candle.off .smoke{
+    animation:smoke 2s ease-out forwards;
+}
+
+@keyframes smoke{
+    0%{
+        opacity:.6;
+        transform:translate(0,0) scale(.5);
+    }
+
+    50%{
+        opacity:.35;
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translate(
+                calc(var(--smoke-x) * 1px),
+                -80px
+            )
+            scale(2.5);
+    }
+}
+
+
+/* =========================================================
+   48 NUMBER
+========================================================= */
+
+.cake-number{
+    position:absolute;
+
+    left:50%;
+    bottom:52px;
+
+    transform:
+        translateX(-50%)
+        scale(.15);
+
+    opacity:0;
+
+    z-index:15;
+
+    font-family:"Libre Baskerville",serif;
+
+    font-size:50px;
+
+    color:#ffe5a0;
+
+    text-shadow:
+        0 0 10px rgba(255,210,110,.5),
+        0 0 35px rgba(255,180,60,.35);
+
+    filter:blur(10px);
+
+    transition:
+        opacity 1s var(--ease),
+        transform 1.2s var(--ease),
+        filter 1.2s var(--ease);
+}
+
+.cake.revealed .cake-number{
+    opacity:1;
+
+    transform:
+        translateX(-50%)
+        scale(1);
+
+    filter:blur(0);
+}
+
+
+/* =========================================================
+   CAKE BUTTON
+========================================================= */
+
+.blow-btn{
+    position:relative;
+
+    margin-top:20px;
+
+    border:1px solid #735a30;
+
+    color:#e5c982;
+
+    background:rgba(255,255,255,.025);
+
+    padding:14px 23px;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    z-index:20;
+}
+
+.blow-btn:hover{
+    background:#e1bd6c;
+    color:#17120e;
+}
+
+.blow-btn:disabled{
+    cursor:default;
+}
+
+
+/* =========================================================
+   CAKE MESSAGE
+========================================================= */
+
+.cake-message{
+    margin-top:16px;
+
+    color:#877e70;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+
+    text-align:center;
+
+    opacity:.8;
+}
+
+
+/* =========================================================
+   SPECIAL WISH
+========================================================= */
+
+.wish-box{
+    margin-top:35px;
+
+    padding:18px;
+
+    border:1px solid rgba(216,184,109,.2);
+
+    background:rgba(255,255,255,.025);
+
+    max-width:430px;
+}
+
+.wish-box small{
+    color:#a88d59;
+
+    letter-spacing:3px;
+
+    font-size:8px;
+}
+
+.wish-box p{
+    color:#a8a096;
+
+    line-height:1.7;
+
+    font-size:11px;
+
+    margin-top:8px;
+}
+
+
+/* =========================================================
+   ENVELOPE
+========================================================= */
+
+.envelope-wrap{
+    max-width:850px;
+
+    margin:auto;
+}
+
+.envelope{
+    height:340px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d4c4a2,
+            #a9936e
+        );
+
+    position:relative;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    box-shadow:
+        15px 25px 50px rgba(55,40,20,.18);
+
+    transition:
+        transform .6s var(--ease);
+}
+
+.envelope:hover{
+    transform:translateY(-7px);
+}
+
+.envelope:before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            35deg,
+            transparent 49.5%,
+            #95815e 50%,
+            transparent 50.5%
+        ),
+        linear-gradient(
+            -35deg,
+            transparent 49.5%,
+            #95815e 50%,
+            transparent 50.5%
+        );
+}
+
+.envelope-card{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    background:#fffaf0;
+
+    padding:30px 40px;
+
+    min-width:230px;
+
+    text-align:center;
+
+    box-shadow:
+        0 15px 35px rgba(55,40,20,.2);
+}
+
+.envelope-card small{
+    display:block;
+
+    color:#8d7c60;
+
+    letter-spacing:4px;
+
+    font-size:8px;
+
+    margin-bottom:10px;
+}
+
+.envelope-card b{
+    font-family:"Libre Baskerville",serif;
+
+    font-size:25px;
+}
+
+.letter{
+    display:none;
+
+    background:#fffaf0;
+
+    border:1px solid #d9ccb5;
+
+    padding:
+        55px clamp(25px,8vw,90px);
+}
+
+.letter.open{
+    display:block;
+
+    animation:
+        letterOpen .8s var(--ease);
+}
+
+@keyframes letterOpen{
+    from{
+        opacity:0;
+        transform:
+            translateY(35px)
+            rotateX(8deg);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.letter h4{
+    font-family:"Libre Baskerville",serif;
+
+    font-size:30px;
+
+    margin-bottom:25px;
+}
+
+.letter p{
+    font-family:"Libre Baskerville",serif;
+
+    font-size:15px;
+
+    line-height:2;
+
+    color:#43392d;
+
+    white-space:pre-line;
+}
+
+.letter-sign{
+    margin-top:30px;
+
+    font-family:"Libre Baskerville",serif;
+
+    font-weight:bold;
+}
+
+
+/* =========================================================
+   PRAYER
+========================================================= */
+
+.prayer{
+    background:#ddd3c1;
+
+    text-align:center;
+}
+
+.prayer-inner{
+    max-width:900px;
+
+    margin:auto;
+}
+
+.prayer h3{
+    font-size:clamp(2.6rem,7vw,6rem);
+}
+
+.prayer-text{
+    max-width:750px;
+
+    margin:28px auto;
+
+    font-family:"Libre Baskerville",serif;
+
+    color:#5e5549;
+
+    font-size:16px;
+
+    line-height:2;
+}
+
+.pray-btn{
+    border:1px solid #80683f;
+
+    background:transparent;
+
+    padding:14px 23px;
+
+    color:#4d402f;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.pray-btn:hover{
+    background:#17130e;
+
+    color:#e4c77e;
+}
+
+
+/* =========================================================
+   3 WISHES
+========================================================= */
+
+.three-wishes{
+    margin-top:55px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:1px;
+
+    background:var(--line);
+}
+
+.wish{
+    background:#e4dac9;
+
+    padding:30px 20px;
+}
+
+.wish span{
+    font-size:22px;
+}
+
+.wish h4{
+    font-family:"Libre Baskerville",serif;
+
+    margin:12px 0 8px;
+
+    font-size:17px;
+}
+
+.wish p{
+    font-size:11px;
+
+    color:#776d60;
+
+    line-height:1.7;
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.final{
+    min-height:100svh;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #2a2118,
+            #0a0908 60%
+        );
+
+    color:white;
+
+    display:grid;
+
+    place-items:center;
+
+    text-align:center;
+
+    padding:
+        100px 20px
+        calc(80px + env(safe-area-inset-bottom));
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.final-stars{
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+}
+
+.star{
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    background:#e8ce92;
+
+    border-radius:50%;
+
+    animation:star 3s ease-in-out infinite alternate;
+}
+
+@keyframes star{
+    from{
+        opacity:.15;
+        transform:scale(.7);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1.5);
+    }
+}
+
+.final-inner{
+    position:relative;
+
+    z-index:2;
+}
+
+.final-small{
+    color:#9f947f;
+
+    letter-spacing:5px;
+
+    font-size:9px;
+}
+
+.final h5{
+    font-family:"Libre Baskerville",serif;
+
+    font-size:clamp(3.3rem,11vw,9rem);
+
+    line-height:.95;
+
+    letter-spacing:-5px;
+
+    margin:25px 0;
+}
+
+.final h5 span{
+    color:#d9ba70;
+
+    font-weight:400;
+}
+
+.final p{
+    max-width:600px;
+
+    margin:auto;
+
+    color:#918a80;
+
+    line-height:1.9;
+
+    font-size:13px;
+}
+
+.restart{
+    margin-top:35px;
+
+    background:transparent;
+
+    border:1px solid #594b36;
+
+    color:#d0b575;
+
+    padding:13px 20px;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal{
+    opacity:0;
+
+    transform:translateY(45px);
+
+    transition:
+        opacity 1s var(--ease),
+        transform 1s var(--ease);
+}
+
+.reveal.in{
+    opacity:1;
+
+    transform:none;
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+.confetti{
+    position:fixed;
+
+    width:6px;
+    height:12px;
+
+    z-index:9000;
+
+    pointer-events:none;
+
+    animation:
+        confettiFall 1.8s ease-out forwards;
+}
+
+@keyframes confettiFall{
+    to{
+        transform:
+            translate(
+                var(--x),
+                var(--y)
+            )
+            rotate(720deg);
+
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+    position:fixed;
+
+    left:50%;
+    bottom:25px;
+
+    transform:
+        translate(-50%,30px);
+
+    background:#17130f;
+
+    color:#eee2c6;
+
+    border:1px solid #56472e;
+
+    padding:13px 18px;
+
+    font-size:10px;
+
+    z-index:9990;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.4s;
+}
+
+.toast.show{
+    opacity:1;
+
+    transform:
+        translate(-50%,0);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:800px){
+
+    header{
+        height:60px;
+
+        padding-left:18px;
+        padding-right:18px;
+    }
+
+    nav{
+        display:none;
+    }
+
+    .brand{
+        font-size:11px;
+    }
+
+    .hero{
+        min-height:auto;
+
+        padding:
+            110px 20px
+            65px;
+
+        grid-template-columns:1fr;
+
+        gap:45px;
+    }
+
+    .hero h2{
+        font-size:
+            clamp(
+                3.1rem,
+                15vw,
+                5rem
+            );
+
+        letter-spacing:-3px;
+    }
+
+    .hero-copy{
+        font-size:13px;
+
+        margin-top:24px;
+    }
+
+    .scroll{
+        margin-top:35px;
+    }
+
+    .hero-photo{
+        height:440px;
+
+        min-height:0;
+    }
+
+    .photo-frame{
+        inset:
+            15px 0 0 20px;
+    }
+
+    .photo-box{
+        inset:
+            0 20px 20px 0;
+    }
+
+    .ticker{
+        font-size:8px;
+        padding:14px 0;
+    }
+
+    .section{
+        padding:
+            80px 20px;
+    }
+
+    .section-head{
+        grid-template-columns:1fr;
+
+        gap:16px;
+
+        margin-bottom:40px;
+    }
+
+    .section h3{
+        font-size:
+            clamp(
+                2.5rem,
+                12vw,
+                4rem
+            );
+
+        letter-spacing:-2px;
+    }
+
+    .message{
+        grid-template-columns:1fr;
+    }
+
+    .message-side{
+        border-bottom:1px solid var(--line);
+
+        padding:
+            25px 0;
+    }
+
+    .message-main{
+        border-left:0;
+
+        padding:
+            35px 0;
+    }
+
+    .message-main p{
+        font-size:18px;
+
+        line-height:1.75;
+    }
+
+    .photo-story{
+        grid-template-columns:1fr;
+    }
+
+    .story{
+        min-height:380px;
+    }
+
+    .story.small{
+        min-height:260px;
+    }
+
+    .story-grid{
+        grid-template-rows:
+            260px 260px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .card{
+        min-height:auto;
+
+        border-right:0;
+
+        border-bottom:1px solid var(--line);
+
+        padding:
+            30px 5px;
+    }
+
+    .card:last-child{
+        border-bottom:0;
+    }
+
+    .card-no{
+        margin-bottom:28px;
+    }
+
+
+    /* CAKE MOBILE */
+
+    .cake-section{
+        padding-top:85px;
+        padding-bottom:85px;
+    }
+
+    .cake-wrap{
+        grid-template-columns:1fr;
+
+        gap:10px;
+    }
+
+    .dark-title{
+        text-align:center;
+    }
+
+    .dark-title .lead{
+        max-width:330px;
+
+        margin:
+            16px auto 0;
+    }
+
+    .wish-box{
+        margin:
+            25px auto 0;
+        text-align:left;
+    }
+
+    .cake-stage{
+        min-height:530px;
+
+        margin-top:0;
+
+        transform:none;
+    }
+
+    .cake{
+        transform:
+            scale(.78);
+
+        margin-top:-10px;
+    }
+
+    .cake-aura{
+        width:280px;
+        height:280px;
+    }
+
+    .plate{
+        width:320px;
+    }
+
+    .cake-number{
+        font-size:48px;
+    }
+
+    .blow-btn{
+        margin-top:-25px;
+
+        padding:
+            14px 22px;
+    }
+
+    .cake-message{
+        max-width:250px;
+
+        line-height:1.6;
+    }
+
+
+    /* LETTER */
+
+    .envelope{
+        height:270px;
+    }
+
+    .envelope-card{
+        min-width:205px;
+
+        padding:
+            25px 30px;
+    }
+
+    .letter{
+        padding:
+            38px 23px;
+    }
+
+    .letter h4{
+        font-size:25px;
+    }
+
+    .letter p{
+        font-size:14px;
+
+        line-height:1.9;
+    }
+
+
+    /* PRAYER */
+
+    .prayer-text{
+        font-size:14px;
+
+        line-height:1.9;
+    }
+
+    .three-wishes{
+        grid-template-columns:1fr;
+
+        gap:1px;
+    }
+
+
+    /* FINAL */
+
+    .final h5{
+        font-size:
+            clamp(
+                3.2rem,
+                15vw,
+                6rem
+            );
+
+        letter-spacing:-3px;
+    }
+
+    .final p{
+        font-size:12px;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media(max-width:380px){
+
+    .hero h2{
+        font-size:3rem;
+    }
+
+    .hero-photo{
+        height:390px;
+    }
+
+    .cake{
+        transform:scale(.68);
+    }
+
+    .cake-stage{
+        min-height:500px;
+    }
+
+    .final h5{
+        font-size:3.1rem;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *:before,
+    *:after{
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        scroll-behavior:auto!important;
+        transition-duration:.01ms!important;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="noise"></div>
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<div id="intro">
+
+    <div class="intro-content">
+
+        <div class="secret">
+            RAHASIA KECIL · 29.09.2026
+        </div>
+
+        <div class="intro-gift">
+
+            <div class="gift-lid"></div>
+
+            <div class="gift-box"></div>
+
+            <div class="ribbon"></div>
+
+            <div class="bow"></div>
+
+        </div>
+
+        <h1>
+            Psst...<br>
+            <span>jangan bilang Bapak.</span>
+        </h1>
+
+        <p class="intro-text">
+            Ada sesuatu kecil yang sudah disiapkan.
+            Bukan hadiah mahal. Bukan sesuatu yang mewah.
+            Cuma beberapa kata dari seorang anak
+            untuk orang yang sangat berarti.
+        </p>
+
+        <button class="open-btn" id="enter">
+            BUKA KEJUTANNYA ✦
+        </button>
+
+        <div class="intro-note">
+            lebih bagus kalau dibuka dengan suara aktif ♪
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header id="header">
+
+    <div class="brand">
+        UNTUK <span>BAPAK</span>
+    </div>
+
+    <nav>
+        <a href="#surat">Surat</a>
+        <a href="#kenangan">Kenangan</a>
+        <a href="#cerita">Cerita</a>
+        <a href="#kejutan">Kejutan</a>
+        <a href="#doa">Doa</a>
+    </nav>
+
+    <button class="music" id="music">
+        ♪
+    </button>
+
+</header>
+
+
+<main id="main">
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div>
+
+        <div class="kicker">
+            29 September 2026 · hari spesial
+        </div>
+
+        <h2>
+            Untuk<br>
+            <em>Bapak.</em><br>
+            Selalu.
+        </h2>
+
+        <p class="hero-copy">
+            Hari ini mungkin terlihat seperti satu tanggal
+            biasa. Tapi buat kami, ini adalah alasan untuk
+            berhenti sebentar dan mengucapkan satu hal
+            yang kadang lupa disampaikan:
+            terima kasih, Pak.
+        </p>
+
+        <div class="hero-meta">
+
+            <span class="pill">
+                Satu keluarga
+            </span>
+
+            <span class="pill">
+                Banyak cerita
+            </span>
+
+            <span class="pill">
+                Satu ucapan ❤️
+            </span>
+
+        </div>
+
+        <div class="scroll">
+            <i></i>
+            SCROLL PELAN-PELAN
+        </div>
+
+    </div>
+
+
+    <div class="hero-photo">
+
+        <div class="photo-frame"></div>
+
+        <div class="photo-box">
+
+            <img
+                src="foto/bapak-utama.jpg"
+                onerror="this.style.display='none'"
+            >
+
+            <div class="photo-fallback">
+
+                <div>
+
+                    <b>✦</b>
+
+                    <br>
+
+                    Taruh foto Bapak di
+
+                    <br>
+
+                    <strong>
+                        foto/bapak-utama.jpg
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="photo-tag">
+            BAPAK · 48
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TICKER
+===================================================== -->
+
+<div class="ticker">
+
+    <div class="ticker-track">
+
+        <span>TERIMA KASIH ✦</span>
+        <span>SUDAH MENJADI BAPAK ✦</span>
+        <span>SELAMAT ULANG TAHUN ✦</span>
+        <span>SEMOGA SELALU DIBERKATI ✦</span>
+
+        <span>TERIMA KASIH ✦</span>
+        <span>SUDAH MENJADI BAPAK ✦</span>
+        <span>SELAMAT ULANG TAHUN ✦</span>
+        <span>SEMOGA SELALU DIBERKATI ✦</span>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     SURAT
+===================================================== -->
+
+<section
+    class="section reveal"
+    id="surat"
+>
+
+    <div class="section-head">
+
+        <div>
+            <div class="num">
+                01 / SURAT
+            </div>
+        </div>
+
+        <div>
+
+            <h3>
+                Ada hal yang<br>
+                <strong>ingin kukatakan.</strong>
+            </h3>
+
+            <p class="lead">
+                Mungkin beberapa kalimat ini seharusnya
+                lebih sering aku ucapkan langsung.
+                Jadi hari ini, aku tuliskan semuanya.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="message">
+
+        <div class="message-side">
+
+            DARI ANAKMU
+
+            <br><br>
+
+            Untuk seseorang yang mungkin tidak selalu
+            tahu betapa besar arti kehadirannya.
+
+        </div>
+
+
+        <div class="message-main">
+
+            <p>
+                Bapak, selamat ulang tahun yang ke-48.
+            </p>
+
+            <p>
+                Terima kasih untuk semua hal yang mungkin
+                selama ini aku anggap biasa: bekerja,
+                menjaga rumah, mengingatkan, menegur,
+                membantu, dan tetap ada bahkan ketika
+                aku tidak banyak bicara.
+            </p>
+
+            <p>
+                Aku tahu aku belum menjadi anak yang
+                sempurna. Kadang keras kepala, kadang
+                membantah, kadang baru mengerti setelah
+                waktu berlalu.
+            </p>
+
+            <p>
+                Maaf kalau ada sikap atau perkataan yang
+                pernah membuat Bapak kecewa.
+            </p>
+
+            <p>
+                Semakin aku besar, semakin aku sadar
+                bahwa banyak hal yang dulu terasa seperti
+                teguran ternyata adalah bentuk kasih.
+            </p>
+
+            <div class="signature">
+
+                — Efraim
+
+                <small>
+                    anak Bapak
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     KENANGAN
+===================================================== -->
+
+<section
+    class="section reveal"
+    id="kenangan"
+>
+
+    <div class="section-head">
+
+        <div>
+            <div class="num">
+                02 / KENANGAN
+            </div>
+        </div>
+
+        <div>
+
+            <h3>
+                Bukan foto yang<br>
+                <strong>membuatnya berarti.</strong>
+            </h3>
+
+            <p class="lead">
+                Foto hanya menyimpan gambar.
+                Yang membuatnya berharga adalah
+                cerita yang terjadi di baliknya.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="photo-story">
+
+
+        <div class="story">
+
+            <img
+                src="foto/kenangan-1.jpg"
+                onerror="this.style.display='none'"
+            >
+
+            <div class="story-fallback">
+
+                foto/kenangan-1.jpg
+
+            </div>
+
+            <div class="story-caption">
+                Satu dari banyak hari
+                yang akan selalu diingat.
+            </div>
+
+        </div>
+
+
+        <div class="story-grid">
+
+            <div class="story small">
+
+                <img
+                    src="foto/kenangan-2.jpg"
+                    onerror="this.style.display='none'"
+                >
+
+                <div class="story-fallback">
+                    foto/kenangan-2.jpg
+                </div>
+
+            </div>
+
+
+            <div class="story small">
+
+                <img
+                    src="foto/kenangan-3.jpg"
+                    onerror="this.style.display='none'"
+                >
+
+                <div class="story-fallback">
+                    foto/kenangan-3.jpg
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CERITA
+===================================================== -->
+
+<section
+    class="section reveal"
+    id="cerita"
+>
+
+    <div class="section-head">
+
+        <div>
+            <div class="num">
+                03 / HAL SEDERHANA
+            </div>
+        </div>
+
+        <div>
+
+            <h3>
+                Hal kecil yang<br>
+                <strong>ternyata besar.</strong>
+            </h3>
+
+        </div>
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <div class="card-no">
+                01
+            </div>
+
+            <h4>
+                Rumah
+            </h4>
+
+            <p>
+                Rumah bukan cuma dinding dan atap.
+                Ada rasa aman yang muncul karena tahu
+                ada Bapak di dalamnya.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-no">
+                02
+            </div>
+
+            <h4>
+                Nasihat
+            </h4>
+
+            <p>
+                Tidak semua nasihat langsung dimengerti.
+                Beberapa baru terasa maknanya ketika
+                kita mulai menjalani hidup sendiri.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-no">
+                03
+            </div>
+
+            <h4>
+                Perjuangan
+            </h4>
+
+            <p>
+                Ada lelah yang mungkin tidak pernah
+                diceritakan. Hari ini adalah kesempatan
+                untuk bilang: terima kasih.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-no">
+                04
+            </div>
+
+            <h4>
+                Kehadiran
+            </h4>
+
+            <p>
+                Kadang hal yang paling berarti bukan
+                sesuatu yang dilakukan. Tapi seseorang
+                yang tetap ada.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CAKE
+===================================================== -->
+
+<section
+    class="section cake-section reveal"
+    id="kejutan"
+>
+
+    <div class="cake-wrap">
+
+
+        <div class="dark-title">
+
+            <div class="num">
+                04 / KEJUTAN
+            </div>
+
+            <h3>
+                Make a wish,<br>
+                <strong>Bapak.</strong>
+            </h3>
+
+            <p class="lead">
+                Ada satu hal yang belum boleh dilihat
+                sebelum lilinnya ditiup.
+            </p>
+
+
+            <div class="wish-box">
+
+                <small>
+                    PETUNJUK KECIL
+                </small>
+
+                <p>
+                    Tarik napas...
+                    pikirkan satu harapan...
+                    lalu tekan tombol di bawah kue.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="cake-stage">
+
+
+            <div class="cake-aura"></div>
+
+
+            <div
+                class="cake"
+                id="cake"
+            >
+
+                <div class="plate"></div>
+
+
+                <div class="tier tier1"></div>
+                <div class="tier tier2"></div>
+                <div class="tier tier3"></div>
+
+
+                <div class="cream cream1">
+
+                    <i class="drip drip1"></i>
+                    <i class="drip drip2"></i>
+                    <i class="drip drip3"></i>
+
+                </div>
+
+
+                <div class="cream cream2">
+
+                    <i class="drip drip1"></i>
+                    <i class="drip drip2"></i>
+
+                </div>
+
+
+                <div class="cream cream3"></div>
+
+
+                <div class="berry b1"></div>
+                <div class="berry b2"></div>
+                <div class="berry b3"></div>
+
+
+                <div class="leaf l1"></div>
+                <div class="leaf l2"></div>
+
+
+                <!-- CANDLES -->
+
+                <div class="candles">
+
+
+                    <div class="candle">
+
+                        <div class="flame"></div>
+
+                        <div
+                            class="smoke"
+                            style="--smoke-x:-7"
+                        ></div>
+
+                    </div>
+
+
+                    <div class="candle">
+
+                        <div class="flame"></div>
+
+                        <div
+                            class="smoke"
+                            style="--smoke-x:5"
+                        ></div>
+
+                    </div>
+
+
+                    <div class="candle">
+
+                        <div class="flame"></div>
+
+                        <div
+                            class="smoke"
+                            style="--smoke-x:8"
+                        ></div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- HIDDEN NUMBER -->
+
+                <div class="cake-number">
+                    48
+                </div>
+
+
+            </div>
+
+
+            <button
+                class="blow-btn"
+                id="blow"
+            >
+                TIUP LILIN ✦
+            </button>
+
+
+            <div
+                class="cake-message"
+                id="cakeMessage"
+            >
+                angka spesialnya masih disembunyikan...
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECRET LETTER
+===================================================== -->
+
+<section
+    class="section reveal"
+>
+
+    <div class="section-head">
+
+        <div>
+            <div class="num">
+                05 / SURAT RAHASIA
+            </div>
+        </div>
+
+        <div>
+
+            <h3>
+                Satu halaman<br>
+                <strong>yang dibuka pelan.</strong>
+            </h3>
+
+        </div>
+
+    </div>
+
+
+    <div class="envelope-wrap">
+
+
+        <div
+            class="envelope"
+            id="envelope"
+        >
+
+            <div class="envelope-card">
+
+                <small>
+                    BUKA KETIKA SIAP
+                </small>
+
+                <b>
+                    Untuk Bapak,
+                </b>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="letter"
+            id="letter"
+        >
+
+            <h4>
+                Bapak,
+            </h4>
+
+            <p>
+Selamat ulang tahun yang ke-48.
+
+Aku mungkin tidak selalu bilang,
+tapi aku bersyukur punya Bapak.
+
+Terima kasih karena sudah berjuang untuk keluarga,
+bahkan untuk hal-hal yang tidak pernah Bapak ceritakan.
+
+Terima kasih untuk setiap nasihat, teguran,
+bantuan, dan perhatian yang kadang baru kusadari
+nilainya setelah aku semakin dewasa.
+
+Maaf kalau selama ini aku masih sering keras kepala.
+Maaf kalau ada perkataan atau perbuatan
+yang membuat Bapak kecewa.
+
+Aku tidak tahu bagaimana cara membalas semuanya.
+
+Jadi untuk sekarang, aku cuma ingin bilang:
+
+Aku sayang Bapak.
+Aku bangga punya Bapak.
+
+Dan aku ingin suatu hari nanti
+bisa membuat Bapak bangga juga.
+
+Semoga Tuhan selalu menjaga Bapak,
+memberi kesehatan, umur panjang, rezeki,
+damai, dan sukacita.
+
+Semoga setiap langkah Bapak selalu diberkati.
+
+Selamat ulang tahun, Pak. ❤️
+            </p>
+
+
+            <div class="letter-sign">
+                — Efraim
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     DOA
+===================================================== -->
+
+<section
+    class="section prayer reveal"
+    id="doa"
+>
+
+    <div class="prayer-inner">
+
+        <div class="num">
+            06 / DOA
+        </div>
+
+        <h3>
+            Kiranya Tuhan<br>
+            <strong>menjaga Bapak.</strong>
+        </h3>
+
+        <p class="prayer-text">
+            Tuhan, terima kasih untuk kehidupan Bapak.
+            Kiranya Engkau selalu memberikan kesehatan,
+            kekuatan, umur panjang, rezeki, damai,
+            dan sukacita.
+
+            Lindungi setiap langkahnya,
+            berkati pekerjaannya,
+            dan biarkan rumah ini selalu dipenuhi kasih.
+
+            Semoga hari-hari yang akan datang membawa
+            lebih banyak alasan untuk tersenyum.
+
+            Dalam nama Tuhan Yesus.
+            Amin.
+        </p>
+
+
+        <button
+            class="pray-btn"
+            id="pray"
+        >
+            ✦ AMINKAN DOA INI
+        </button>
+
+
+        <div class="three-wishes">
+
+
+            <div class="wish">
+
+                <span>♡</span>
+
+                <h4>
+                    Kesehatan
+                </h4>
+
+                <p>
+                    Semoga Tuhan selalu memberikan
+                    kesehatan dan kekuatan.
+                </p>
+
+            </div>
+
+
+            <div class="wish">
+
+                <span>✦</span>
+
+                <h4>
+                    Kedamaian
+                </h4>
+
+                <p>
+                    Semoga hati Bapak selalu dipenuhi
+                    damai dan sukacita.
+                </p>
+
+            </div>
+
+
+            <div class="wish">
+
+                <span>∞</span>
+
+                <h4>
+                    Berkat
+                </h4>
+
+                <p>
+                    Semoga setiap langkah dan pekerjaan
+                    Bapak selalu diberkati.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
+
+<section class="final">
+
+
+    <div
+        class="final-stars"
+        id="stars"
+    ></div>
+
+
+    <div class="final-inner">
+
+        <div class="final-small">
+            DAN AKHIRNYA...
+        </div>
+
+
+        <h5>
+            Selamat ulang<br>
+            <span>tahun, Bapak.</span>
+        </h5>
+
+
+        <p>
+            48 tahun.
+            Banyak yang sudah dilewati.
+            Masih banyak yang akan datang.
+
+            Terima kasih sudah menjadi bagian
+            paling penting dari cerita keluarga ini.
+
+            ❤️
+        </p>
+
+
+        <button
+            class="restart"
+            onclick="location.reload()"
+        >
+            ↻ BUKA LAGI DARI AWAL
+        </button>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<div
+    class="toast"
+    id="toast"
+>
+    Selamat ulang tahun, Pak ❤️
+</div>
+
+
+<script>
+
+/* =========================================================
+   BASIC
+========================================================= */
+
+const $ = selector =>
+    document.querySelector(selector);
+
+const intro =
+    $("#intro");
+
+const main =
+    $("#main");
+
+const header =
+    $("#header");
+
+let audioCtx = null;
+
+let musicOn = false;
+
+
+/* =========================================================
+   AUDIO
+========================================================= */
+
+function tone(
+    frequency = 440,
+    duration = .15,
+    type = "sine",
+    volume = .035
+){
+
+    try{
+
+        audioCtx ||=
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
+        const oscillator =
+            audioCtx.createOscillator();
+
+        const gain =
+            audioCtx.createGain();
+
+        oscillator.type =
+            type;
+
+        oscillator.frequency.value =
+            frequency;
+
+        gain.gain.value =
+            volume;
+
+        oscillator.connect(gain);
+
+        gain.connect(
+            audioCtx.destination
+        );
+
+        oscillator.start();
+
+        gain.gain.exponentialRampToValueAtTime(
+            .001,
+            audioCtx.currentTime + duration
+        );
+
+        oscillator.stop(
+            audioCtx.currentTime + duration
+        );
+
+    }catch(e){}
+
+}
+
+
+/* =========================================================
+   ENTER
+========================================================= */
+
+$("#enter").onclick = () => {
+
+    intro.classList.add("hide");
+
+    main.classList.add("show");
+
+    header.classList.add("show");
+
+
+    tone(
+        523,
+        .22,
+        "triangle",
+        .03
+    );
+
+    setTimeout(
+        () =>
+            tone(
+                659,
+                .25,
+                "triangle",
+                .03
+            ),
+        120
+    );
+
+    setTimeout(
+        () =>
+            tone(
+                784,
+                .4,
+                "triangle",
+                .035
+            ),
+        250
+    );
+
+
+    setTimeout(
+        () => {
+
+            $("#surat")
+                .scrollIntoView({
+                    behavior:"smooth"
+                });
+
+        },
+        800
+    );
+
+
+    confetti(45);
+
+};
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+function melody(){
+
+    if(!musicOn)
+        return;
+
+    const notes = [
+        261.6,
+        329.6,
+        392,
+        523.3,
+        392,
+        329.6
+    ];
+
+    notes.forEach(
+        (note,index) => {
+
+            setTimeout(
+                () => {
+
+                    if(musicOn){
+
+                        tone(
+                            note,
+                            .4,
+                            "triangle",
+                            .012
+                        );
+
+                    }
+
+                },
+                index * 230
+            );
+
+        }
+    );
+
+
+    setTimeout(
+        melody,
+        1600
+    );
+
+}
+
+
+$("#music").onclick = () => {
+
+    musicOn =
+        !musicOn;
+
+    $("#music")
+        .classList
+        .toggle(
+            "on",
+            musicOn
+        );
+
+    if(musicOn){
+
+        tone(
+            392,
+            .2,
+            "triangle",
+            .02
+        );
+
+        melody();
+
+    }
+
+};
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+function confetti(amount = 70){
+
+    const colors = [
+        "#c49a55",
+        "#e6c77f",
+        "#853b34",
+        "#f2e5c7",
+        "#75603f"
+    ];
+
+    for(
+        let i = 0;
+        i < amount;
+        i++
+    ){
+
+        const piece =
+            document.createElement("i");
+
+        piece.className =
+            "confetti";
+
+        piece.style.left =
+            "50%";
+
+        piece.style.top =
+            "30%";
+
+        piece.style.background =
+            colors[
+                i % colors.length
+            ];
+
+        piece.style.setProperty(
+            "--x",
+            `${Math.random()*900-450}px`
+        );
+
+        piece.style.setProperty(
+            "--y",
+            `${Math.random()*700+150}px`
+        );
+
+        piece.style.transform =
+            `rotate(${Math.random()*360}deg)`;
+
+        document.body
+            .appendChild(piece);
+
+        setTimeout(
+            () =>
+                piece.remove(),
+            2000
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CAKE / BLOW
+========================================================= */
+
+let cakeBlown = false;
+
+
+$("#blow").onclick = () => {
+
+    if(cakeBlown)
+        return;
+
+    cakeBlown = true;
+
+
+    const cake =
+        $("#cake");
+
+    const candles =
+        document.querySelectorAll(
+            ".candle"
+        );
+
+
+    candles.forEach(
+        candle => {
+
+            candle.classList.add(
+                "off"
+            );
+
+        }
+    );
+
+
+    cake.classList.add(
+        "revealed"
+    );
+
+
+    $("#blow").disabled =
+        true;
+
+    $("#blow").textContent =
+        "HARAPAN SUDAH DIKIRIM ✦";
+
+
+    $("#cakeMessage").textContent =
+        "48 tahun · dan cerita baru dimulai ❤️";
+
+
+    /* blow sound */
+
+    tone(
+        180,
+        .35,
+        "sine",
+        .045
+    );
+
+    setTimeout(
+        () =>
+            tone(
+                110,
+                .45,
+                "sine",
+                .025
+            ),
+        100
+    );
+
+
+    /* reveal chime */
+
+    setTimeout(
+        () =>
+            tone(
+                523,
+                .2,
+                "triangle",
+                .03
+            ),
+        500
+    );
+
+    setTimeout(
+        () =>
+            tone(
+                659,
+                .25,
+                "triangle",
+                .03
+            ),
+        650
+    );
+
+    setTimeout(
+        () =>
+            tone(
+                784,
+                .5,
+                "triangle",
+                .035
+            ),
+        800
+    );
+
+
+    confetti(120);
+
+
+    toast(
+        "48 tahun! Selamat ulang tahun, Pak. ❤️"
+    );
+
+};
+
+
+/* =========================================================
+   ENVELOPE
+========================================================= */
+
+$("#envelope").onclick = () => {
+
+    $("#envelope")
+        .style.display =
+        "none";
+
+    $("#letter")
+        .classList
+        .add("open");
+
+
+    tone(
+        440,
+        .15,
+        "triangle",
+        .025
+    );
+
+    setTimeout(
+        () =>
+            tone(
+                554,
+                .25,
+                "triangle",
+                .025
+            ),
+        120
+    );
+
+
+    confetti(35);
+
+};
+
+
+/* =========================================================
+   PRAYER
+========================================================= */
+
+$("#pray").onclick = () => {
+
+    tone(
+        523,
+        .25,
+        "sine",
+        .025
+    );
+
+    setTimeout(
+        () =>
+            tone(
+                659,
+                .25,
+                "sine",
+                .025
+            ),
+        150
+    );
+
+    setTimeout(
+        () =>
+            tone(
+                784,
+                .45,
+                "sine",
+                .03
+            ),
+        300
+    );
+
+
+    confetti(55);
+
+
+    $("#pray").textContent =
+        "✓ DOA SUDAH DIAMINKAN";
+
+
+    toast(
+        "Amin. Semoga Tuhan memberkati Bapak selalu. ❤️"
+    );
+
+};
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function toast(message){
+
+    const element =
+        $("#toast");
+
+    element.textContent =
+        message;
+
+    element.classList.add(
+        "show"
+    );
+
+    setTimeout(
+        () =>
+            element.classList.remove(
+                "show"
+            ),
+        3200
+    );
+
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if(
+                        entry.isIntersecting
+                    ){
+
+                        entry.target
+                            .classList
+                            .add("in");
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold:.1
+        }
+    );
+
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(
+        element =>
+            observer.observe(element)
+    );
+
+
+/* =========================================================
+   HEADER SCROLL
+========================================================= */
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        header.classList.toggle(
+            "show",
+            window.scrollY > 100
+        );
+
+    }
+);
+
+
+/* =========================================================
+   FINAL STARS
+========================================================= */
+
+const stars =
+    $("#stars");
+
+for(
+    let i = 0;
+    i < 80;
+    i++
+){
+
+    const star =
+        document.createElement("i");
+
+    star.className =
+        "star";
+
+    star.style.left =
+        `${Math.random()*100}%`;
+
+    star.style.top =
+        `${Math.random()*100}%`;
+
+    star.style.animationDelay =
+        `${Math.random()*3}s`;
+
+    star.style.opacity =
+        Math.random();
+
+    stars.appendChild(star);
+
+}
+
+
+/* =========================================================
+   HERO PARALLAX
+========================================================= */
+
+if(
+    window.matchMedia(
+        "(pointer:fine)"
+    ).matches
+){
+
+    const photo =
+        document.querySelector(
+            ".photo-box"
+        );
+
+    window.addEventListener(
+        "pointermove",
+        event => {
+
+            const x =
+                (event.clientX /
+                window.innerWidth -
+                .5) * 5;
+
+            const y =
+                (event.clientY /
+                window.innerHeight -
+                .5) * 5;
+
+            photo.style.transform =
+                `
+                rotateX(${-y}deg)
+                rotateY(${x}deg)
+                rotate(-1deg)
+                `;
+        }
+    );
+
+}
+
+</script>
+
+</body>
+</html>
