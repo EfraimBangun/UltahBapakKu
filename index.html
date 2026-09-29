@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+<link rel="preload" as="image" href="foto/1.jpg" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
@@ -575,8 +576,27 @@ main.show{
     filter:saturate(.85);
 }
 
-.photo-fallback{
+/* Foto utama harus selalu berada di atas background/fallback */
+.photo-box #heroPhoto{
     position:absolute;
+    inset:0;
+    z-index:3;
+    display:block;
+    width:100%;
+    height:100%;
+    opacity:1;
+    visibility:visible;
+    object-fit:cover;
+}
+
+.photo-box:not(.has-error) .photo-fallback{
+    display:none !important;
+}
+
+.photo-fallback{
+    display:none !important;
+    position:absolute;
+    z-index:2;
     inset:0;
 
     display:grid;
@@ -594,6 +614,10 @@ main.show{
     color:#655846;
 
     font-size:12px;
+}
+
+.photo-box.has-error .photo-fallback{
+    display:grid !important;
 }
 
 .photo-fallback b{
@@ -2447,6 +2471,250 @@ main.show{
     }
 }
 
+
+
+/* =========================================================
+   50 FOTO — PREMIUM + MOBILE
+========================================================= */
+
+.memory-gallery{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    gap:18px;
+    align-items:start;
+}
+
+.memory-card{
+    position:relative;
+    min-width:0;
+    overflow:hidden;
+    background:#fffaf2;
+    padding:8px 8px 40px;
+    border-radius:2px;
+    box-shadow:0 16px 45px rgba(44,34,24,.12);
+    transform:rotate(var(--tilt,0deg));
+    transition:transform .45s var(--ease),box-shadow .45s ease;
+}
+
+.memory-card:nth-child(3n){--tilt:-.8deg;}
+.memory-card:nth-child(3n+1){--tilt:.7deg;}
+.memory-card:nth-child(5n){--tilt:-1.1deg;}
+.memory-card:nth-child(1){grid-column:span 6;--tilt:-1deg;}
+.memory-card:nth-child(2){grid-column:span 3;margin-top:24px;}
+.memory-card:nth-child(3){grid-column:span 3;}
+.memory-card:nth-child(n+4){grid-column:span 3;}
+
+.memory-card:hover{
+    transform:translateY(-8px) rotate(0);
+    box-shadow:0 25px 60px rgba(44,34,24,.2);
+}
+
+.memory-open{
+    display:block;
+    width:100%;
+    aspect-ratio:4/5;
+    border:0;
+    padding:0;
+    overflow:hidden;
+    position:relative;
+    cursor:zoom-in;
+    background:linear-gradient(135deg,#d8cdbb,#9f907a);
+}
+
+.memory-card:first-child .memory-open{
+    aspect-ratio:16/10;
+}
+
+.memory-open img{
+    width:100%;
+    height:100%;
+    display:block;
+    backface-visibility:hidden;
+    object-fit:cover;
+    transition:transform .7s var(--ease);
+}
+
+.memory-card:hover .memory-open img{
+    transform:scale(1.045);
+}
+
+.memory-open.missing:after{
+    content:"TAMBAHKAN FOTO DI SINI";
+    position:absolute;
+    inset:0;
+    display:grid;
+    place-items:center;
+    color:#665947;
+    font-size:8px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.memory-zoom{
+    position:absolute;
+    top:9px;
+    right:9px;
+    width:30px;
+    height:30px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:rgba(10,8,6,.7);
+    color:#f1d38b;
+    font-size:13px;
+}
+
+.memory-card figcaption{
+    position:absolute;
+    left:10px;
+    right:10px;
+    bottom:10px;
+    display:grid;
+    grid-template-columns:30px 1fr 18px;
+    gap:6px;
+    align-items:center;
+    font-size:8px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:#665c50;
+}
+
+.memory-card figcaption b{color:var(--gold3);}
+.memory-card figcaption span{font-weight:700;}
+.memory-card figcaption i{font-style:normal;color:#9c4e43;text-align:right;}
+
+.memory-note{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:13px;
+    margin-top:32px;
+    color:#8c806e;
+    font-size:8px;
+    font-weight:700;
+    letter-spacing:3px;
+}
+.memory-note i{width:40px;height:1px;background:var(--gold);}
+
+.memory-viewer{
+    position:fixed;
+    inset:0;
+    z-index:12000;
+    display:grid;
+    place-items:center;
+    padding:20px;
+    background:rgba(8,7,6,.95);
+    backdrop-filter:blur(16px);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:.3s ease;
+}
+.memory-viewer.open{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+}
+.viewer-content{
+    width:min(820px,88vw);
+    max-height:88svh;
+}
+.viewer-content img{
+    width:100%;
+    max-height:78svh;
+    object-fit:contain;
+    display:block;
+    box-shadow:0 30px 100px rgba(0,0,0,.65);
+}
+.viewer-meta{
+    display:flex;
+    justify-content:space-between;
+    margin-top:13px;
+    color:#9c9385;
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+.viewer-meta b{color:#f0dfb9;}
+.viewer-close,.viewer-prev,.viewer-next{
+    position:absolute;
+    z-index:2;
+    border:1px solid rgba(226,190,108,.35);
+    background:rgba(255,255,255,.04);
+    color:#efd28d;
+    cursor:pointer;
+}
+.viewer-close{
+    top:22px;right:22px;width:44px;height:44px;border-radius:50%;font-size:25px;
+}
+.viewer-prev,.viewer-next{
+    top:50%;transform:translateY(-50%);
+    width:46px;height:62px;font-size:34px;
+}
+.viewer-prev{left:22px}.viewer-next{right:22px}
+
+@media(max-width:800px){
+    .memory-gallery{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:11px;
+    }
+    .memory-card,
+    .memory-card:nth-child(1),
+    .memory-card:nth-child(2),
+    .memory-card:nth-child(3),
+    .memory-card:nth-child(n+4){
+        grid-column:span 1;
+        margin-top:0;
+        padding:5px 5px 34px;
+    }
+    .memory-card:first-child{
+        grid-column:1 / -1;
+    }
+    .memory-card{
+        box-shadow:0 10px 28px rgba(44,34,24,.10);
+    }
+    .memory-card:first-child .memory-open{
+        aspect-ratio:16/9;
+    }
+    .memory-card .memory-open{
+        aspect-ratio:4/5;
+    }
+    .memory-card figcaption{
+        left:7px;right:7px;bottom:7px;
+        grid-template-columns:24px 1fr 14px;
+        gap:3px;font-size:6.5px;letter-spacing:.5px;
+    }
+    .memory-zoom{
+        width:25px;height:25px;top:6px;right:6px;font-size:11px;
+    }
+    .memory-note{
+        font-size:7px;
+        letter-spacing:2px;
+        margin-top:24px;
+    }
+    .memory-viewer{padding:12px;}
+    .viewer-content{width:94vw;}
+    .viewer-content img{max-height:72svh;}
+    .viewer-close{
+        top:12px;right:12px;width:38px;height:38px;
+    }
+    .viewer-prev,.viewer-next{
+        top:auto;bottom:22px;transform:none;
+        width:46px;height:46px;border-radius:50%;font-size:28px;
+    }
+    .viewer-prev{left:18px}.viewer-next{right:18px}
+    .viewer-meta{
+        padding:0 55px;
+        font-size:7px;
+        margin-top:10px;
+    }
+}
+@media(max-width:380px){
+    .memory-gallery{gap:8px;}
+    .memory-card{padding-bottom:32px!important;}
+    .memory-card figcaption{font-size:6px;}
+}
+
 </style>
 </head>
 
@@ -2454,6 +2722,12 @@ main.show{
 <body>
 
 <div class="noise"></div>
+
+<!-- MUSIK UTAMA: ganti file ini dengan lagu pilihanmu -->
+<audio id="bgMusic" loop preload="metadata">
+    <source src="musik/1.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung pemutar audio.
+</audio>
 
 
 <!-- =====================================================
@@ -2465,7 +2739,7 @@ main.show{
     <div class="intro-content">
 
         <div class="secret">
-            RAHASIA KECIL · 29.09.2026
+            RAHASIA KECIL · 30.09.2026
         </div>
 
         <div class="intro-gift">
@@ -2482,7 +2756,7 @@ main.show{
 
         <h1>
             Psst...<br>
-            <span>jangan bilang Bapak.</span>
+            <span>Untuk Bapak.</span>
         </h1>
 
         <p class="intro-text">
@@ -2523,7 +2797,7 @@ main.show{
         <a href="#doa">Doa</a>
     </nav>
 
-    <button class="music" id="music">
+    <button class="music" id="music" type="button" aria-label="Putar musik" title="Putar musik">
         ♪
     </button>
 
@@ -2542,7 +2816,7 @@ main.show{
     <div>
 
         <div class="kicker">
-            29 September 2026 · hari spesial
+            30 September 2026 · hari spesial
         </div>
 
         <h2>
@@ -2590,8 +2864,10 @@ main.show{
         <div class="photo-box">
 
             <img
-                src="foto/bapak-utama.jpg"
-                onerror="this.style.display='none'"
+                id="heroPhoto"
+                src="foto/Utama.jpg"
+                alt="Foto Bapak"
+                data-fallback="foto/Utama.jpg"
             >
 
             <div class="photo-fallback">
@@ -2607,7 +2883,7 @@ main.show{
                     <br>
 
                     <strong>
-                        foto/bapak-utama.jpg
+                        foto/1.jpg
                     </strong>
 
                 </div>
@@ -2781,64 +3057,430 @@ main.show{
     </div>
 
 
-    <div class="photo-story">
+    <div class="memory-gallery" id="memoryGallery">
+        <figure class="memory-card featured">
+            <button class="memory-open" data-index="0" aria-label="Buka foto 1">
+                <img data-memory-photo="1" src="foto/kenangan-1.jpg" data-numbered="foto/1.jpg" alt="Kenangan 1" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>01</b><span>Rumah</span><i>♡</i></figcaption>
+        </figure>
 
+        <figure class="memory-card">
+            <button class="memory-open" data-index="1" aria-label="Buka foto 2">
+                <img data-memory-photo="2" src="foto/kenangan-2.jpg" data-numbered="foto/2.jpg" alt="Kenangan 2" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>02</b><span>Keluarga</span><i>♡</i></figcaption>
+        </figure>
 
-        <div class="story">
+        <figure class="memory-card">
+            <button class="memory-open" data-index="2" aria-label="Buka foto 3">
+                <img data-memory-photo="3" src="foto/kenangan-3.jpg" data-numbered="foto/3.jpg" alt="Kenangan 3" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>03</b><span>Cerita</span><i>♡</i></figcaption>
+        </figure>
 
-            <img
-                src="foto/kenangan-1.jpg"
-                onerror="this.style.display='none'"
-            >
+        <figure class="memory-card">
+            <button class="memory-open" data-index="3" aria-label="Buka foto 4">
+                <img data-memory-photo="4" src="foto/kenangan-4.jpg" data-numbered="foto/4.jpg" alt="Kenangan 4" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>04</b><span>Senyum</span><i>♡</i></figcaption>
+        </figure>
 
-            <div class="story-fallback">
+        <figure class="memory-card">
+            <button class="memory-open" data-index="4" aria-label="Buka foto 5">
+                <img data-memory-photo="5" src="foto/kenangan-5.jpg" data-numbered="foto/5.jpg" alt="Kenangan 5" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>05</b><span>Hari biasa</span><i>♡</i></figcaption>
+        </figure>
 
-                foto/kenangan-1.jpg
+        <figure class="memory-card">
+            <button class="memory-open" data-index="5" aria-label="Buka foto 6">
+                <img data-memory-photo="6" src="foto/kenangan-6.jpg" data-numbered="foto/6.jpg" alt="Kenangan 6" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>06</b><span>Momen kecil</span><i>♡</i></figcaption>
+        </figure>
 
-            </div>
+        <figure class="memory-card">
+            <button class="memory-open" data-index="6" aria-label="Buka foto 7">
+                <img data-memory-photo="7" src="foto/kenangan-7.jpg" data-numbered="foto/7.jpg" alt="Kenangan 7" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>07</b><span>Bersama</span><i>♡</i></figcaption>
+        </figure>
 
-            <div class="story-caption">
-                Satu dari banyak hari
-                yang akan selalu diingat.
-            </div>
+        <figure class="memory-card">
+            <button class="memory-open" data-index="7" aria-label="Buka foto 8">
+                <img data-memory-photo="8" src="foto/kenangan-8.jpg" data-numbered="foto/8.jpg" alt="Kenangan 8" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>08</b><span>Senyuma</span><i>♡</i></figcaption>
+        </figure>
 
-        </div>
+        <figure class="memory-card">
+            <button class="memory-open" data-index="8" aria-label="Buka foto 9">
+                <img data-memory-photo="9" src="foto/kenangan-9.jpg" data-numbered="foto/9.jpg" alt="Kenangan 9" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>09</b><span>Kenangan</span><i>♡</i></figcaption>
+        </figure>
 
+        <figure class="memory-card">
+            <button class="memory-open" data-index="9" aria-label="Buka foto 10">
+                <img data-memory-photo="10" src="foto/kenangan-10.jpg" data-numbered="foto/10.jpg" alt="Kenangan 10" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>10</b><span>Selamanya</span><i>♡</i></figcaption>
+        </figure>
 
-        <div class="story-grid">
+        <figure class="memory-card">
+            <button class="memory-open" data-index="10" aria-label="Buka foto 11">
+                <img data-memory-photo="11" src="foto/kenangan-11.jpg" data-numbered="foto/11.jpg" alt="Kenangan 11" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>11</b><span>Momen 11</span><i>♡</i></figcaption>
+        </figure>
 
-            <div class="story small">
+        <figure class="memory-card">
+            <button class="memory-open" data-index="11" aria-label="Buka foto 12">
+                <img data-memory-photo="12" src="foto/kenangan-12.jpg" data-numbered="foto/12.jpg" alt="Kenangan 12" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>12</b><span>Momen 12</span><i>♡</i></figcaption>
+        </figure>
 
-                <img
-                    src="foto/kenangan-2.jpg"
-                    onerror="this.style.display='none'"
-                >
+        <figure class="memory-card">
+            <button class="memory-open" data-index="12" aria-label="Buka foto 13">
+                <img data-memory-photo="13" src="foto/kenangan-13.jpg" data-numbered="foto/13.jpg" alt="Kenangan 13" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>13</b><span>Momen 13</span><i>♡</i></figcaption>
+        </figure>
 
-                <div class="story-fallback">
-                    foto/kenangan-2.jpg
-                </div>
+        <figure class="memory-card">
+            <button class="memory-open" data-index="13" aria-label="Buka foto 14">
+                <img data-memory-photo="14" src="foto/kenangan-14.jpg" data-numbered="foto/14.jpg" alt="Kenangan 14" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>14</b><span>Momen 14</span><i>♡</i></figcaption>
+        </figure>
 
-            </div>
+        <figure class="memory-card">
+            <button class="memory-open" data-index="14" aria-label="Buka foto 15">
+                <img data-memory-photo="15" src="foto/kenangan-15.jpg" data-numbered="foto/15.jpg" alt="Kenangan 15" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>15</b><span>Momen 15</span><i>♡</i></figcaption>
+        </figure>
 
+        <figure class="memory-card">
+            <button class="memory-open" data-index="15" aria-label="Buka foto 16">
+                <img data-memory-photo="16" src="foto/kenangan-16.jpg" data-numbered="foto/16.jpg" alt="Kenangan 16" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>16</b><span>Momen 16</span><i>♡</i></figcaption>
+        </figure>
 
-            <div class="story small">
+        <figure class="memory-card">
+            <button class="memory-open" data-index="16" aria-label="Buka foto 17">
+                <img data-memory-photo="17" src="foto/kenangan-17.jpg" data-numbered="foto/17.jpg" alt="Kenangan 17" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>17</b><span>Momen 17</span><i>♡</i></figcaption>
+        </figure>
 
-                <img
-                    src="foto/kenangan-3.jpg"
-                    onerror="this.style.display='none'"
-                >
+        <figure class="memory-card">
+            <button class="memory-open" data-index="17" aria-label="Buka foto 18">
+                <img data-memory-photo="18" src="foto/kenangan-18.jpg" data-numbered="foto/18.jpg" alt="Kenangan 18" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>18</b><span>Momen 18</span><i>♡</i></figcaption>
+        </figure>
 
-                <div class="story-fallback">
-                    foto/kenangan-3.jpg
-                </div>
+        <figure class="memory-card">
+            <button class="memory-open" data-index="18" aria-label="Buka foto 19">
+                <img data-memory-photo="19" src="foto/kenangan-19.jpg" data-numbered="foto/19.jpg" alt="Kenangan 19" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>19</b><span>Momen 19</span><i>♡</i></figcaption>
+        </figure>
 
-            </div>
+        <figure class="memory-card">
+            <button class="memory-open" data-index="19" aria-label="Buka foto 20">
+                <img data-memory-photo="20" src="foto/kenangan-20.jpg" data-numbered="foto/20.jpg" alt="Kenangan 20" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>20</b><span>Momen 20</span><i>♡</i></figcaption>
+        </figure>
 
-        </div>
+        <figure class="memory-card">
+            <button class="memory-open" data-index="20" aria-label="Buka foto 21">
+                <img data-memory-photo="21" src="foto/kenangan-21.jpg" data-numbered="foto/21.jpg" alt="Kenangan 21" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>21</b><span>Momen 21</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="21" aria-label="Buka foto 22">
+                <img data-memory-photo="22" src="foto/kenangan-22.jpg" data-numbered="foto/22.jpg" alt="Kenangan 22" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>22</b><span>Momen 22</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="22" aria-label="Buka foto 23">
+                <img data-memory-photo="23" src="foto/kenangan-23.jpg" data-numbered="foto/23.jpg" alt="Kenangan 23" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>23</b><span>Momen 23</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="23" aria-label="Buka foto 24">
+                <img data-memory-photo="24" src="foto/kenangan-24.jpg" data-numbered="foto/24.jpg" alt="Kenangan 24" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>24</b><span>Momen 24</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="24" aria-label="Buka foto 25">
+                <img data-memory-photo="25" src="foto/kenangan-25.jpg" data-numbered="foto/25.jpg" alt="Kenangan 25" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>25</b><span>Momen 25</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="25" aria-label="Buka foto 26">
+                <img data-memory-photo="26" src="foto/kenangan-26.jpg" data-numbered="foto/26.jpg" alt="Kenangan 26" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>26</b><span>Momen 26</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="26" aria-label="Buka foto 27">
+                <img data-memory-photo="27" src="foto/kenangan-27.jpg" data-numbered="foto/27.jpg" alt="Kenangan 27" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>27</b><span>Momen 27</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="27" aria-label="Buka foto 28">
+                <img data-memory-photo="28" src="foto/kenangan-28.jpg" data-numbered="foto/28.jpg" alt="Kenangan 28" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>28</b><span>Momen 28</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="28" aria-label="Buka foto 29">
+                <img data-memory-photo="29" src="foto/kenangan-29.jpg" data-numbered="foto/29.jpg" alt="Kenangan 29" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>29</b><span>Momen 29</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="29" aria-label="Buka foto 30">
+                <img data-memory-photo="30" src="foto/kenangan-30.jpg" data-numbered="foto/30.jpg" alt="Kenangan 30" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>30</b><span>Momen 30</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="30" aria-label="Buka foto 31">
+                <img data-memory-photo="31" src="foto/kenangan-31.jpg" data-numbered="foto/31.jpg" alt="Kenangan 31" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>31</b><span>Momen 31</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="31" aria-label="Buka foto 32">
+                <img data-memory-photo="32" src="foto/kenangan-32.jpg" data-numbered="foto/32.jpg" alt="Kenangan 32" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>32</b><span>Momen 32</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="32" aria-label="Buka foto 33">
+                <img data-memory-photo="33" src="foto/kenangan-33.jpg" data-numbered="foto/33.jpg" alt="Kenangan 33" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>33</b><span>Momen 33</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="33" aria-label="Buka foto 34">
+                <img data-memory-photo="34" src="foto/kenangan-34.jpg" data-numbered="foto/34.jpg" alt="Kenangan 34" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>34</b><span>Momen 34</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="34" aria-label="Buka foto 35">
+                <img data-memory-photo="35" src="foto/kenangan-35.jpg" data-numbered="foto/35.jpg" alt="Kenangan 35" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>35</b><span>Momen 35</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="35" aria-label="Buka foto 36">
+                <img data-memory-photo="36" src="foto/kenangan-36.jpg" data-numbered="foto/36.jpg" alt="Kenangan 36" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>36</b><span>Momen 36</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="36" aria-label="Buka foto 37">
+                <img data-memory-photo="37" src="foto/kenangan-37.jpg" data-numbered="foto/37.jpg" alt="Kenangan 37" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>37</b><span>Momen 37</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="37" aria-label="Buka foto 38">
+                <img data-memory-photo="38" src="foto/kenangan-38.jpg" data-numbered="foto/38.jpg" alt="Kenangan 38" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>38</b><span>Momen 38</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="38" aria-label="Buka foto 39">
+                <img data-memory-photo="39" src="foto/kenangan-39.jpg" data-numbered="foto/39.jpg" alt="Kenangan 39" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>39</b><span>Momen 39</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="39" aria-label="Buka foto 40">
+                <img data-memory-photo="40" src="foto/kenangan-40.jpg" data-numbered="foto/40.jpg" alt="Kenangan 40" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>40</b><span>Momen 40</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="40" aria-label="Buka foto 41">
+                <img data-memory-photo="41" src="foto/kenangan-41.jpg" data-numbered="foto/41.jpg" alt="Kenangan 41" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>41</b><span>Momen 41</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="41" aria-label="Buka foto 42">
+                <img data-memory-photo="42" src="foto/kenangan-42.jpg" data-numbered="foto/42.jpg" alt="Kenangan 42" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>42</b><span>Momen 42</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="42" aria-label="Buka foto 43">
+                <img data-memory-photo="43" src="foto/kenangan-43.jpg" data-numbered="foto/43.jpg" alt="Kenangan 43" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>43</b><span>Momen 43</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="43" aria-label="Buka foto 44">
+                <img data-memory-photo="44" src="foto/kenangan-44.jpg" data-numbered="foto/44.jpg" alt="Kenangan 44" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>44</b><span>Momen 44</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="44" aria-label="Buka foto 45">
+                <img data-memory-photo="45" src="foto/kenangan-45.jpg" data-numbered="foto/45.jpg" alt="Kenangan 45" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>45</b><span>Momen 45</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="45" aria-label="Buka foto 46">
+                <img data-memory-photo="46" src="foto/kenangan-46.jpg" data-numbered="foto/46.jpg" alt="Kenangan 46" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>46</b><span>Momen 46</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="46" aria-label="Buka foto 47">
+                <img data-memory-photo="47" src="foto/kenangan-47.jpg" data-numbered="foto/47.jpg" alt="Kenangan 47" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>47</b><span>Momen 47</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="47" aria-label="Buka foto 48">
+                <img data-memory-photo="48" src="foto/kenangan-48.jpg" data-numbered="foto/48.jpg" alt="Kenangan 48" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>48</b><span>Momen 48</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="48" aria-label="Buka foto 49">
+                <img data-memory-photo="49" src="foto/kenangan-49.jpg" data-numbered="foto/49.jpg" alt="Kenangan 49" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>49</b><span>Momen 49</span><i>♡</i></figcaption>
+        </figure>
+
+        <figure class="memory-card">
+            <button class="memory-open" data-index="49" aria-label="Buka foto 50">
+                <img data-memory-photo="50" src="foto/kenangan-50.jpg" data-numbered="foto/50.jpg" alt="Kenangan 50" loading="lazy" decoding="async">
+                <span class="memory-zoom">↗</span>
+            </button>
+            <figcaption><b>50</b><span>Momen 50</span><i>♡</i></figcaption>
+        </figure>
 
     </div>
 
+    <div class="memory-note"><span>50 MOMEN</span><i></i><span>UNTUK DISIMPAN</span></div>
+
 </section>
+
+
+<!-- =====================================================
+     PHOTO VIEWER 50 FOTO
+===================================================== -->
+
+<div class="memory-viewer" id="memoryViewer" aria-hidden="true">
+    <button class="viewer-close" id="viewerClose" aria-label="Tutup">×</button>
+    <button class="viewer-prev" id="viewerPrev" aria-label="Foto sebelumnya">‹</button>
+    <div class="viewer-content">
+        <img id="viewerImage" src="" alt="">
+        <div class="viewer-meta">
+            <span id="viewerCount">01 / 50</span>
+            <b id="viewerCaption">Rumah</b>
+        </div>
+    </div>
+    <button class="viewer-next" id="viewerNext" aria-label="Foto berikutnya">›</button>
+</div>
 
 
 <!-- =====================================================
@@ -3417,7 +4059,6 @@ const header =
 
 let audioCtx = null;
 
-let musicOn = false;
 
 
 /* =========================================================
@@ -3538,82 +4179,62 @@ $("#enter").onclick = () => {
 
 
 /* =========================================================
-   MUSIC
+   MUSIC — FILE MP3 ASLI
 ========================================================= */
 
-function melody(){
+const bgMusic = document.querySelector("#bgMusic");
+const musicButton = document.querySelector("#music");
+let musicOn = false;
 
-    if(!musicOn)
-        return;
-
-    const notes = [
-        261.6,
-        329.6,
-        392,
-        523.3,
-        392,
-        329.6
-    ];
-
-    notes.forEach(
-        (note,index) => {
-
-            setTimeout(
-                () => {
-
-                    if(musicOn){
-
-                        tone(
-                            note,
-                            .4,
-                            "triangle",
-                            .012
-                        );
-
-                    }
-
-                },
-                index * 230
-            );
-
-        }
+function updateMusicButton(){
+    if(!musicButton) return;
+    musicButton.classList.toggle("on", musicOn);
+    musicButton.textContent = musicOn ? "❚❚" : "♪";
+    musicButton.setAttribute(
+        "aria-label",
+        musicOn ? "Jeda musik" : "Putar musik"
     );
-
-
-    setTimeout(
-        melody,
-        1600
-    );
-
 }
 
+if(bgMusic){
+    bgMusic.volume = 0.48;
 
-$("#music").onclick = () => {
+    bgMusic.addEventListener("play", () => {
+        musicOn = true;
+        updateMusicButton();
+    });
 
-    musicOn =
-        !musicOn;
+    bgMusic.addEventListener("pause", () => {
+        musicOn = false;
+        updateMusicButton();
+    });
 
-    $("#music")
-        .classList
-        .toggle(
-            "on",
-            musicOn
-        );
+    bgMusic.addEventListener("error", () => {
+        musicOn = false;
+        updateMusicButton();
+        console.warn("Musik tidak ditemukan. Pastikan file: music/lagu.mp3");
+        toast("Tambahkan lagu ke folder music/ dengan nama lagu.mp3");
+    });
+}
 
-    if(musicOn){
+if(musicButton){
+    musicButton.addEventListener("click", async () => {
+        if(!bgMusic) return;
 
-        tone(
-            392,
-            .2,
-            "triangle",
-            .02
-        );
+        try{
+            if(bgMusic.paused){
+                await bgMusic.play();
+            }else{
+                bgMusic.pause();
+            }
+        }catch(error){
+            console.warn("Musik belum bisa diputar:", error);
+            toast("File lagu belum ditemukan di music/lagu.mp3");
+        }
+    });
+}
 
-        melody();
-
-    }
-
-};
+updateMusicButton();
 
 
 /* =========================================================
@@ -4045,6 +4666,163 @@ if(
     );
 
 }
+
+
+
+/* =========================================================
+   FOTO — SUPPORT JPG / JPEG / PNG
+========================================================= */
+
+function tryImageFormats(img, basePath){
+    const extensions = ["jpg", "jpeg", "png"];
+    let index = 0;
+
+    function loadNext(){
+        if(index >= extensions.length){
+            img.style.display = "none";
+            if(img.parentElement) img.parentElement.classList.add("missing");
+            return;
+        }
+
+        const extension = extensions[index++];
+        img.src = basePath + "." + extension;
+    }
+
+    img.onerror = loadNext;
+    loadNext();
+}
+
+const heroPhoto = document.querySelector("#heroPhoto");
+if(heroPhoto){
+    const heroBox = heroPhoto.closest(".photo-box");
+    const candidates = [
+        "foto/Utama.jpg",
+        "foto/bapak-utama.jpeg",
+        "foto/bapak-utama.png"
+    ];
+
+    let heroIndex = 0;
+
+    function showHeroFallback(){
+        heroPhoto.style.display = "none";
+        heroPhoto.style.visibility = "hidden";
+        heroBox?.classList.add("has-error");
+    }
+
+    function tryHeroPhoto(){
+        if(heroIndex >= candidates.length){
+            showHeroFallback();
+            return;
+        }
+
+        heroPhoto.style.display = "block";
+        heroPhoto.style.visibility = "visible";
+        heroPhoto.style.opacity = "1";
+        heroPhoto.src = candidates[heroIndex++];
+    }
+
+    heroPhoto.addEventListener("load", () => {
+        heroPhoto.style.display = "block";
+        heroPhoto.style.visibility = "visible";
+        heroPhoto.style.opacity = "1";
+        heroBox?.classList.remove("has-error");
+    });
+
+    heroPhoto.addEventListener("error", tryHeroPhoto);
+    tryHeroPhoto();
+}
+
+document.querySelectorAll("img[data-memory-photo]").forEach(img => {
+    const number = img.dataset.memoryPhoto;
+    tryImageFormats(img, "foto/kenangan-" + number);
+});
+
+
+/* =========================================================
+   50 PHOTO VIEWER
+========================================================= */
+
+// =========================================================
+// SISTEM FOTO — dukung dua format nama file:
+// foto/kenangan-1.jpg ... atau foto/1.jpg ...
+// =========================================================
+function heroImageFallback(img){
+    const fallback = img.dataset.fallback;
+    if(fallback && !img.dataset.fallbackUsed){
+        img.dataset.fallbackUsed = "1";
+        img.src = fallback;
+        return;
+    }
+    img.style.display = "none";
+    img.closest(".photo-box")?.classList.add("has-error");
+}
+
+document.querySelectorAll("img[data-memory-photo]").forEach(img=>{
+    img.addEventListener("error", function(){
+        const numbered = this.dataset.numbered;
+        if(numbered && !this.dataset.numberedTried){
+            this.dataset.numberedTried = "1";
+            this.src = numbered;
+            return;
+        }
+        this.style.display = "none";
+        this.closest(".memory-open")?.classList.add("missing");
+    });
+});
+
+const memoryItems = Array.from(document.querySelectorAll(".memory-open"));
+const viewer = document.querySelector("#memoryViewer");
+const viewerImage = document.querySelector("#viewerImage");
+const viewerCount = document.querySelector("#viewerCount");
+const viewerCaption = document.querySelector("#viewerCaption");
+let viewerIndex = 0;
+
+function showMemory(index){
+    viewerIndex = (index + memoryItems.length) % memoryItems.length;
+    const img = memoryItems[viewerIndex].querySelector("img");
+    viewerImage.src = img.currentSrc || img.src;
+    viewerImage.alt = img.alt;
+    viewerCount.textContent =
+        String(viewerIndex + 1).padStart(2,"0") + " / " + memoryItems.length;
+    viewerCaption.textContent =
+        viewerIndex < 10
+        ? ["Rumah","Keluarga","Cerita","Senyum","Hari biasa","Momen kecil","Bersama","Senyuman","Kenangan","Selamanya"][viewerIndex]
+        : "Momen " + (viewerIndex + 1);
+    viewer.classList.add("open");
+    viewer.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+}
+function closeMemory(){
+    viewer.classList.remove("open");
+    viewer.setAttribute("aria-hidden","true");
+    document.body.style.overflow="";
+}
+memoryItems.forEach((item,index)=>{
+    item.addEventListener("click",()=>showMemory(index));
+});
+document.querySelector("#viewerClose").onclick=closeMemory;
+document.querySelector("#viewerPrev").onclick=()=>showMemory(viewerIndex-1);
+document.querySelector("#viewerNext").onclick=()=>showMemory(viewerIndex+1);
+viewer.addEventListener("click",e=>{
+    if(e.target===viewer) closeMemory();
+});
+document.addEventListener("keydown",e=>{
+    if(!viewer.classList.contains("open")) return;
+    if(e.key==="Escape") closeMemory();
+    if(e.key==="ArrowLeft") showMemory(viewerIndex-1);
+    if(e.key==="ArrowRight") showMemory(viewerIndex+1);
+});
+let touchStartX=0;
+viewer.addEventListener("touchstart",e=>{
+    touchStartX=e.changedTouches[0].screenX;
+},{passive:true});
+viewer.addEventListener("touchend",e=>{
+    const dx=e.changedTouches[0].screenX-touchStartX;
+    if(Math.abs(dx)>45){
+        dx<0 ? showMemory(viewerIndex+1) : showMemory(viewerIndex-1);
+    }
+},{passive:true});
+
 
 </script>
 
